@@ -34,19 +34,27 @@ export class ImgMaxPXSizeService {
                 let ratio = maxHeight / currentHeight; //is gonna be <1
                 newWidth = newWidth * ratio;
             }
-            self.ng2PicaService.resize([file], newWidth, newHeight).subscribe((result) => {
-                //check if result is file
-                if (typeof result.name !== 'undefined' && typeof result.size !== 'undefined' && typeof result.type !== 'undefined') {
-                    //all good, result is a file
-                    resizedFileSubject.next(result);
-                }
-                else {
-                    //something went wrong 
-                    resizedFileSubject.next({ resizedFile: file, reason: result, error: "PICA_ERROR" });
-                }
+            if(newHeight===img.naturalHeight && newWidth === img.naturalWidth){
+                //no resizing necessary
+                resizedFileSubject.next(file);
                 self._logExecutionTime(logExecutionTime);
                 window.URL.revokeObjectURL(img.src);
-            });
+            }
+            else{
+                self.ng2PicaService.resize([file], newWidth, newHeight).subscribe((result) => {
+                    //check if result is file
+                    if (typeof result.name !== 'undefined' && typeof result.size !== 'undefined' && typeof result.type !== 'undefined') {
+                        //all good, result is a file
+                        resizedFileSubject.next(result);
+                    }
+                    else {
+                        //something went wrong 
+                        resizedFileSubject.next({ resizedFile: file, reason: result, error: "PICA_ERROR" });
+                    }
+                    self._logExecutionTime(logExecutionTime);
+                    window.URL.revokeObjectURL(img.src);
+                });
+            }
         };
         img.src = window.URL.createObjectURL(file);
 
