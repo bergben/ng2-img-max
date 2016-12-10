@@ -10,7 +10,7 @@
     "declaration": true
   },
   "include": [
-    "./ng2-pica.ts",
+    "./ng2-img-max.ts",
     "src/**/*"
   ],
   "exclude": [
