@@ -1,4 +1,5 @@
 # ng2-img-max
+Angular 2 module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
 
 ## Install
 ```bash
