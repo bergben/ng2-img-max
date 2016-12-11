@@ -62,7 +62,7 @@ Method to resize files if necessary down to a certain maximal width or maximal h
 Same as above just that it takes in only one file instead of a whole array of files.
 
 ## Contribute 
-Due to the lack of other algorithms that also reduce the filesize of an image by reducing the quality until it fits a certain limit, help to find the best possible algorithm is much appreciated.
+Due to the lack of other algorithms that also reduce the filesize of an image by reducing the quality until it fits a certain limit, help to find the best possible algorithm to do so is much appreciated.
 The current algorithm can be found here: https://github.com/bergben/ng2-img-max/blob/master/src/img-max-size.service.ts#L49.
 
 ## Limitations
