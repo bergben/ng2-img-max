@@ -48,7 +48,7 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 ### Maximal filesize
 #### `compress(files: File[], maxSizeInMB: number, logExecutionTime: Boolean = false): Observable<any>` 
 Method to compress an image. This reduces the quality of an image down until it fits a certain fileSize which is given as "maxSizeInMB".
-Returns an observable that, onNext receives either a File when everything went as planned or an error Object if something went wrong. See the example above on how to see if the returned object is a file. 
+Returns an observable that for every file given, onNext receives either a File when everything went as planned or an error Object if something went wrong. See the example above on how to see if the returned object is a file. 
 
 #### `compressImage` 
 Same as above just that it takes in only one file instead of a whole array of files.
@@ -66,7 +66,7 @@ Due to the lack of other algorithms that also reduce the filesize of an image by
 The current algorithm can be found here: https://github.com/bergben/ng2-img-max/blob/master/src/img-max-size.service.ts#L49.
 
 ## Limitations
-Although the resizing functions do use web workers do to the heavy work, this is not possible for the compression methods. The reasons for this are that a web worker does not have access to the DOM and can therefor not create a new HtmlCanvasElement. Neither can it be passed as a parameter to the web worker, as a web worker can only receive serializable data, which only be the ImageData but that can only be turned into a 2DCanvasContext, not a HtmlCanvasElement itself without the DOM. 
+Although the resizing functions do use web workers to do the heavy work, this is not possible for the compression methods. The reasons for this are that a web worker does not have access to the DOM and can therefor not create a new HtmlCanvasElement. Neither can it be passed as a parameter to the web worker, as a web worker can only receive serializable data, which only be the ImageData but that can only be turned into a 2DCanvasContext, not a HtmlCanvasElement itself without the DOM. 
 
 ## To-do
  - Provide a demo
