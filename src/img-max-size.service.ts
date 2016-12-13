@@ -90,6 +90,18 @@ export class ImgMaxSizeService {
                         let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
                         resolve(newFile);
                     }
+                    else if ((newQuality > quality) && Number.isInteger(quality) && (Math.floor(newQuality) == Math.round(newQuality))) {
+                        //COMPRESSION END
+                        /* 
+                           in the previous step if ((quality > newQuality) && (Math.round(quality) == Math.round(newQuality))) applied, so
+                           newQuality = Math.round(newQuality) - 1; this was done to reduce the quality at least a full integer down to not waste a step
+                           with the same compression rate quality as before. Now, the newQuality is still only in between the old quality (e.g. 93) 
+                           and the newQuality (e.g. 94) which most likely means that the value for the newQuality (the bigger one) would make the filesize
+                           too big so we should just stick with the current, lower quality and return that file.
+                        */
+                        let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
+                        resolve(newFile);
+                    }
                     else {
                         //CONTINUE COMPRESSION
                         if ((quality > newQuality) && (Math.round(quality) == Math.round(newQuality))) {
