@@ -90,7 +90,7 @@ export class ImgMaxSizeService {
                         let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
                         resolve(newFile);
                     }
-                    else if ((newQuality > quality) && Number.isInteger(quality) && (Math.floor(newQuality) == Math.round(newQuality))) {
+                    else if ((newQuality > quality) && Number.isInteger(quality) && (Math.floor(newQuality) == quality)) {
                         //COMPRESSION END
                         /* 
                            in the previous step if ((quality > newQuality) && (Math.round(quality) == Math.round(newQuality))) applied, so
