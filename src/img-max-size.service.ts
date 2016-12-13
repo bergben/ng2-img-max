@@ -61,7 +61,7 @@ export class ImgMaxSizeService {
                     let ratioMaxSizeToCurrentSize = maxSizeInMB / currentSize;
                     let ratioMaxSizeToInitialSize = currentSize / (this.initialFile.size/1024/1024);
                     let newQuality = 0;
-                    let multiplicator = Math.abs(ratioMaxSizeToInitialSize - 1)*10/(currentStep*1.7);
+                    let multiplicator = Math.abs(ratioMaxSizeToInitialSize - 1)*10/(currentStep*1.7)/ratioMaxSizeToCurrentSize;
                     if(multiplicator<1){
                         multiplicator=1;
                     }
