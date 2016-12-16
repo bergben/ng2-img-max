@@ -61,15 +61,6 @@ Method to resize files if necessary down to a certain maximal width or maximal h
 #### `resizeImage` 
 Same as above just that it takes in only one file instead of a whole array of files.
 
-### Crop image (e.g. useful to create thumbnails)
-
-#### `crop(files: File[], toWidth: number, toHeight: number, startX: number = 0, startY: number = 0): Observable<any>` 
-Crops the given files down to the given width and height. startX and startY tell where the cropping should start as coordinates.
-Returns an observable that, onNext receives either a File when everything went as planned or an error Object if something went wrong for every file given.
-
-#### `cropImage` 
-Same as above just that it takes in only one file instead of a whole array of files.
-
 ## Contribute 
 Due to the lack of other algorithms that also reduce the filesize of an image by reducing the quality until it fits a certain limit, help to find the best possible algorithm to do so is much appreciated.
 The current algorithm can be found here: https://github.com/bergben/ng2-img-max/blob/master/src/img-max-size.service.ts#L49.
