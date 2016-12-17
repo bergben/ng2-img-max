@@ -79,13 +79,16 @@ export class ImgMaxSizeService {
                     else {
                         newQuality = quality - (1 - ratioMaxSizeToCurrentSize) * 10 * multiplicator;
                     }
+
+                    if(newQuality > 100){
+                        //max quality
+                        newQuality=100;
+                    }
+
                     if (quality===100 && newQuality >= 100) {
                         //COMPRESSION END
-                        //case that shouldn't exist - in that case just return the initial File
+                        //Seems like quality 100 is max but file still too small, case that shouldn't exist as the compression shouldn't even have started in the first place
                         reject({compressedFile:this.initialFile, reason: "Unfortunately there was an error while compressing the file.", error: "FILE_BIGGER_THAN_INITIAL_FILE"});
-                    }
-                    else if(newQuality > 100){
-                        newQuality=100;
                     }
                     else if ((quality < 1)&&(newQuality<quality)) {
                         //COMPRESSION END
