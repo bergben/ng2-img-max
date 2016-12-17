@@ -109,7 +109,7 @@ export class ImgMaxSizeService {
                         resolve(newFile);
                     }
 
-                    else if (currentStep>5 && (newQuality > quality) && (newQuality < quality+1.5)) {
+                    else if (currentStep>5 && (newQuality > quality) && (newQuality < quality+2)) {
                         //COMPRESSION END
                         //for some rare occasions the algorithm might be stuck around e.g. 98.5 and 97.4 because of the maxQuality of 100, the current quality is the nearest possible quality in that case
                         let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
