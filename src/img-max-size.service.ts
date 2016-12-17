@@ -81,8 +81,8 @@ export class ImgMaxSizeService {
                     }
 
                     if(newQuality > 100){
-                        //max quality
-                        newQuality=100;
+                        //max quality = 100, so let's set the new quality to the value in between the old quality and 100 in case of > 100
+                        newQuality=100 - quality/2;
                     }
 
                     if (quality===100 && newQuality >= 100) {
