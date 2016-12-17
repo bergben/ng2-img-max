@@ -59,7 +59,15 @@ export class ImgMaxSizeService {
                     //CALCULATE NEW QUALITY
                     let currentSize = blob.size / 1024 / 1024;
                     let ratioMaxSizeToCurrentSize = maxSizeInMB / currentSize;
+                    if(ratioMaxSizeToCurrentSize>5){
+                        //max ratio to avoid extreme quality values
+                        ratioMaxSizeToCurrentSize=5;
+                    }
                     let ratioMaxSizeToInitialSize = currentSize / (this.initialFile.size/1024/1024);
+                    if(ratioMaxSizeToInitialSize<0.05){
+                        //min ratio to avoid extreme quality values
+                        ratioMaxSizeToInitialSize=0.05;
+                    }
                     let newQuality = 0;
                     let multiplicator = Math.abs(ratioMaxSizeToInitialSize - 1)*10/(currentStep*1.7)/ratioMaxSizeToCurrentSize;
                     if(multiplicator<1){
