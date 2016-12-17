@@ -84,6 +84,11 @@ export class ImgMaxSizeService {
                         //max quality = 100, so let's set the new quality to the value in between the old quality and 100 in case of > 100
                         newQuality= quality + (100 - quality)/2;
                     }
+                    
+                    if(newQuality < 0){
+                        //min quality = 0, so let's set the new quality to the value in between the old quality and 0 in case of < 0
+                        newQuality= quality - quality/2;
+                    }
 
                     if (quality===100 && newQuality >= 100) {
                         //COMPRESSION END
@@ -100,6 +105,13 @@ export class ImgMaxSizeService {
                     else if ((newQuality > quality) && (Math.round(quality) == Math.round(newQuality))) {
                         //COMPRESSION END
                         //next steps quality would be the same quality but newQuality is slightly bigger than old one, means we most likely found the nearest quality to compress to maximal size
+                        let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
+                        resolve(newFile);
+                    }
+
+                    else if (currentStep>5 && (newQuality > quality) && (newQuality < quality+1.5)) {
+                        //COMPRESSION END
+                        //for some rare occasions the algorithm might be stuck around e.g. 98.5 and 97.4 because of the maxQuality of 100, the current quality is the nearest possible quality in that case
                         let newFile = new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
                         resolve(newFile);
                     }
