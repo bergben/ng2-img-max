@@ -138,7 +138,7 @@ export class ImgMaxSizeService {
                         resolve(this._getCompressedFile(cvs, newQuality, maxSizeInMB, currentStep + 1));
                     }
                 }
-            }, this.initialFile.type, quality / 100);
+            }, "image/jpeg", quality / 100);
         });
         return result;
     }

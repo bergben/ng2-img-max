@@ -1,20 +1,26 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "baseUrl": ".",
+    "module": "es2015",
     "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "outDir": "build",
     "moduleResolution": "node",
-    "declaration": true
+    "declaration": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs": ["node_modules/rxjs"],
+      "ng2-pica": ["node_modules/ng2-pica"]
+    }
   },
-  "include": [
-    "./ng2-img-max.ts",
-    "src/**/*"
+  "files": [
+    "ng2-img-max.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
+  }
 }
