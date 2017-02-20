@@ -45,8 +45,8 @@ jspm_packages
 # Generated #
 !karma.conf.js
 !karma-test-shim.js
-!rollup.config.js
 *.js
+!rollup.config.js
 *.map
 *.d.ts
 typings
