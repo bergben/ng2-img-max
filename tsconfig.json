@@ -3,10 +3,9 @@
     "baseUrl": ".",
     "module": "es2015",
     "target": "es5",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "outDir": "build",
+    "outDir": "dist",
     "moduleResolution": "node",
     "declaration": true,
     "stripInternal": true,
@@ -15,10 +14,14 @@
       "@angular/core": ["node_modules/@angular/core"],
       "rxjs": ["node_modules/rxjs"],
       "ng2-pica": ["node_modules/ng2-pica"]
-    }
+    },
+    "lib": [
+      "es2015", 
+      "dom"
+    ]
   },
   "files": [
-    "ng2-img-max.ts"
+    "ng2-pica.ts"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
