@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { ImgMaxSizeService } from './img-max-size.service';
 import { ImgMaxPXSizeService } from './img-maxpx-size.service';
 
 @Injectable()
 export class Ng2ImgMaxService {
-    constructor(private imgMaxSizeService: ImgMaxSizeService, private imgMaxPXSizeService: ImgMaxPXSizeService) {
+    constructor(@Inject(forwardRef(() => ImgMaxSizeService)) private imgMaxSizeService: ImgMaxSizeService, @Inject(forwardRef(() => ImgMaxPXSizeService)) private imgMaxPXSizeService: ImgMaxPXSizeService) {
     }
     public compress(files: File[], maxSizeInMB: number, logExecutionTime: Boolean = false): Observable<any> {
         let compressedFileSubject: Subject<any> = new Subject<any>();
