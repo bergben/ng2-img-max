@@ -30,7 +30,7 @@
     "resize"
   ],
   "dependencies": {
-    "ng2-pica": "^0.1.2"
+    "ng2-pica": "^0.1.3"
   },
   "peerDependencies": {
     "@angular/core": "^2.0.0",
@@ -38,13 +38,12 @@
   },
   "devDependencies": {
     "@angular/common": "2.4.8",
-    "@angular/compiler": "^2.4.0",
+    "@angular/compiler": "^2.4.8",
     "@angular/compiler-cli": "^2.4.8",
     "@angular/core": "2.4.8",
     "@angular/platform-browser": "2.4.8",
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/router": "3.4.8",
-    "@types/core-js": "^0.9.0",
     "@types/node": "^7.0.5",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.3",

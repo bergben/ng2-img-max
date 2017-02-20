@@ -21,7 +21,7 @@
     ]
   },
   "files": [
-    "ng2-pica.ts"
+    "ng2-img-max.ts"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
