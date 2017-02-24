@@ -33,14 +33,6 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 [...]
     constructor(private ng2ImgMaxService: Ng2ImgMaxService) {
         this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe((result)=>{
-             if (typeof result.name !== 'undefined' && typeof result.size !== 'undefined' && typeof result.type !== 'undefined') {
-                 //all good, result is a file
-                  console.info(result);
-             }
-             else {
-                 //something went wrong 
-                  console.error(result);
-             }
         });
     }
 }
@@ -50,15 +42,17 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 ### Maximal filesize
 #### Catch error cases
 When using the compression methods you should make sure to catch the error cases. 
-If an error happens, you will get a object with the following properties: 
+If an error happens, you will receive an object with the following properties: 
  `compressedFile`:`File`, `reason`: `string` and `error`:`string`
 
 Possible errors are: 
-`INVALID_EXTENSION`: File provided is neither of type jpg nor of type png). The `compressedFile` is the original file.
-`PNG_WITH_ALPHA`: File provided is a png image which uses the alpha channel. No compression possible unless `ignoreAlpha` is set to true. The `compressedFile` is the original file.
-`MAX_STEPS_EXCEEDED`: Could not find the correct compression quality in 15 steps - abort. This should rarely to never at all happen. The `compressedFile` is the result of step 15 of the compression.
-`FILE_BIGGER_THAN_INITIAL_FILE`: This should actually never happen, just a precaution. The `compressedFile` is the original file.
-`UNABLE_TO_COMPRESS_ENOUGH`: Could not compress image enough to fit the maximal file size limit. The `compressedFile` is a compression as close as it can get.
+`INVALID_EXTENSION`: File provided is neither of type jpg nor of type png). The `compressedFile` is the original file. <br />
+`PNG_WITH_ALPHA`: File provided is a png image which uses the alpha channel. No compression possible unless `ignoreAlpha` is set to true. The `compressedFile` is the original file.<br />
+`MAX_STEPS_EXCEEDED`: Could not find the correct compression quality in 15 steps - abort. This should rarely to never at all happen. The `compressedFile` is the result of step 15 of the compression.<br />
+`FILE_BIGGER_THAN_INITIAL_FILE`: This should actually never happen, just a precaution. The `compressedFile` is the original file.<br />
+`UNABLE_TO_COMPRESS_ENOUGH`: Could not compress image enough to fit the maximal file size limit. The `compressedFile` is a compression as close as it can get.<br />
+
+Example code to show how to see if the result is an object (error happened) or a file:
 
  ```TypeScript
 this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe((result)=>{
