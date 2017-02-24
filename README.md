@@ -85,7 +85,7 @@ Same as above just that it takes in only one file instead of a whole array of fi
 
 ## Contribute 
 Due to the lack of other algorithms that also reduce the filesize of an image by reducing the quality until it fits a certain limit, help to find the best possible algorithm to do so is much appreciated.
-The current algorithm can be found here: https://github.com/bergben/ng2-img-max/blob/master/src/img-max-size.service.ts#L49.
+The current algorithm can be found here: https://github.com/bergben/ng2-img-max/blob/master/src/img-max-size.service.ts.
 
 ## Limitations
 Although the resizing functions do use web workers to do the heavy work, this is not possible for the compression methods. The reasons for this are that a web worker does not have access to the DOM and can therefor not create a new HtmlCanvasElement. Neither can it be passed as a parameter to the web worker, as a web worker can only receive serializable data, which only be the ImageData but that can only be turned into a 2DCanvasContext, not a HtmlCanvasElement itself without the DOM. 
