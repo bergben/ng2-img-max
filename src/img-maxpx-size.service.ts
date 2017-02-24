@@ -7,7 +7,7 @@ export class ImgMaxPXSizeService {
     timeAtStart: number;
     constructor(@Inject(forwardRef(() => Ng2PicaService)) private ng2PicaService: Ng2PicaService) {
     }
-    public resizeImage(file: File, maxWidth: number, maxHeight: number, logExecutionTime: Boolean = false): Observable<any> {
+    public resizeImage(file: File, maxWidth: number, maxHeight: number, logExecutionTime: boolean = false): Observable<any> {
         let resizedFileSubject: Subject<any> = new Subject<any>();
         this.timeAtStart = new Date().getTime();
         if (file.type !== "image/jpeg" && file.type !== "image/png") {
@@ -22,7 +22,7 @@ export class ImgMaxPXSizeService {
             let newWidth = currentWidth;
             let newHeight = currentHeight;
             if (newWidth > maxWidth) {
-                newWidth = maxWidth;
+                newWidth = maxWidth
                 //resize height proportionally
                 let ratio = maxWidth / currentWidth; //is gonna be <1
                 newHeight = newHeight * ratio;
@@ -37,7 +37,7 @@ export class ImgMaxPXSizeService {
             if(newHeight===img.naturalHeight && newWidth === img.naturalWidth){
                 //no resizing necessary
                 resizedFileSubject.next(file);
-                self._logExecutionTime(logExecutionTime);
+                self.logExecutionTime(logExecutionTime);
                 window.URL.revokeObjectURL(img.src);
             }
             else{
@@ -51,7 +51,7 @@ export class ImgMaxPXSizeService {
                         //something went wrong 
                         resizedFileSubject.next({ resizedFile: file, reason: result, error: "PICA_ERROR" });
                     }
-                    self._logExecutionTime(logExecutionTime);
+                    self.logExecutionTime(logExecutionTime);
                     window.URL.revokeObjectURL(img.src);
                 });
             }
@@ -60,7 +60,7 @@ export class ImgMaxPXSizeService {
 
         return resizedFileSubject.asObservable();
     };
-    private _logExecutionTime(logExecutionTime: Boolean): void {
+    private logExecutionTime(logExecutionTime: boolean): void {
         if (logExecutionTime) {
             console.info("Execution time: ", new Date().getTime() - this.timeAtStart + "ms");
         }

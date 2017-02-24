@@ -48,16 +48,42 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 
 ## Methods
 ### Maximal filesize
-#### `compress(files: File[], maxSizeInMB: number, logExecutionTime: Boolean = false): Observable<any>` 
+#### Catch error cases
+When using the compression methods you should make sure to catch the error cases. 
+If an error happens, you will get a object with the following properties: 
+ `compressedFile`:`File`, `reason`: `string` and `error`:`string`
+
+Possible errors are: 
+`INVALID_EXTENSION`: File provided is neither of type jpg nor of type png). The `compressedFile` is the original file.
+`PNG_WITH_ALPHA`: File provided is a png image which uses the alpha channel. No compression possible unless `ignoreAlpha` is set to true. The `compressedFile` is the original file.
+`MAX_STEPS_EXCEEDED`: Could not find the correct compression quality in 15 steps - abort. This should rarely to never at all happen. The `compressedFile` is the result of step 15 of the compression.
+`FILE_BIGGER_THAN_INITIAL_FILE`: This should actually never happen, just a precaution. The `compressedFile` is the original file.
+`UNABLE_TO_COMPRESS_ENOUGH`: Could not compress image enough to fit the maximal file size limit. The `compressedFile` is a compression as close as it can get.
+
+ ```TypeScript
+this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe((result)=>{
+        if (typeof result.name !== 'undefined' && typeof result.size !== 'undefined' && typeof result.type !== 'undefined') {
+            //all good, result is a file
+            console.info(result);
+        }
+        else {
+            //something went wrong 
+            //use result.compressedFile or handle specific error cases individually
+        }
+});
+```
+
+#### `compress(files: File[], maxSizeInMB: number, ignoreAlpha: boolean = false, logExecutionTime: boolean = false): Observable<any>` 
 Method to compress an image. This reduces the quality of an image down until it fits a certain fileSize which is given as "maxSizeInMB".
-Returns an observable that for every file given, onNext receives either a File when everything went as planned or an error Object if something went wrong. See the example above on how to see if the returned object is a file. 
+Set ignoreAlpha to true if you want to ignore the alpha channel for png images and compress them nonetheless (not recommended - the alpha channel will be lost and the resulting image might differ from the original image).
+Returns an observable that for every file given, onNext receives either a File when everything went as planned or an error Object if something went wrong. 
 
 #### `compressImage` 
 Same as above just that it takes in only one file instead of a whole array of files.
 
 ### Maximal width / height
 
-#### `resize(files: File[], maxWidth: number, maxHeight: number, logExecutionTime: Boolean = false): Observable<any>` 
+#### `resize(files: File[], maxWidth: number, maxHeight: number, logExecutionTime: boolean = false): Observable<any>` 
 Method to resize files if necessary down to a certain maximal width or maximal height in px. If you want only one limit just set the other max to 10.000: for example `resize([myfile1,myfile2],2000,10000).subscribe([...]`
 
 #### `resizeImage` 
