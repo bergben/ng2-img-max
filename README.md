@@ -45,12 +45,12 @@ When using the compression methods you should make sure to catch the error cases
 If an error happens, you will receive an object with the following properties: 
  `compressedFile`:`File`, `reason`: `string` and `error`:`string`
 
-Possible errors are: 
-`INVALID_EXTENSION`: File provided is neither of type jpg nor of type png). The `compressedFile` is the original file. <br />
-`PNG_WITH_ALPHA`: File provided is a png image which uses the alpha channel. No compression possible unless `ignoreAlpha` is set to true. The `compressedFile` is the original file.<br />
-`MAX_STEPS_EXCEEDED`: Could not find the correct compression quality in 15 steps - abort. This should rarely to never at all happen. The `compressedFile` is the result of step 15 of the compression.<br />
-`FILE_BIGGER_THAN_INITIAL_FILE`: This should actually never happen, just a precaution. The `compressedFile` is the original file.<br />
-`UNABLE_TO_COMPRESS_ENOUGH`: Could not compress image enough to fit the maximal file size limit. The `compressedFile` is a compression as close as it can get.<br />
+Possible errors are: <br /> 
+<b>`INVALID_EXTENSION`</b>: File provided is neither of type jpg nor of type png). The `compressedFile` is the original file. <br />
+<b>`PNG_WITH_ALPHA`</b>: File provided is a png image which uses the alpha channel. No compression possible unless `ignoreAlpha` is set to true. The `compressedFile` is the original file.<br />
+<b>`MAX_STEPS_EXCEEDED`</b>: Could not find the correct compression quality in 15 steps - abort. This should rarely to never at all happen. The `compressedFile` is the result of step 15 of the compression.<br />
+<b>`FILE_BIGGER_THAN_INITIAL_FILE`</b>: This should actually never happen, just a precaution. The `compressedFile` is the original file.<br />
+<b>`UNABLE_TO_COMPRESS_ENOUGH`</b>: Could not compress image enough to fit the maximal file size limit. The `compressedFile` is a compression as close as it can get.<br />
 
 Example code to show how to see if the result is an object (error happened) or a file:
 
