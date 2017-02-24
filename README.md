@@ -40,7 +40,7 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 
 ## Methods
 ### Maximal filesize
-#### Catch error cases
+#### IMPORTANT: Catch error cases
 When using the compression methods you should make sure to catch the error cases. 
 If an error happens, you will receive an object with the following properties: 
  `compressedFile`:`File`, `reason`: `string` and `error`:`string`
@@ -68,8 +68,8 @@ this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe((result)=>{
 ```
 
 #### `compress(files: File[], maxSizeInMB: number, ignoreAlpha: boolean = false, logExecutionTime: boolean = false): Observable<any>` 
-Method to compress an image. This reduces the quality of an image down until it fits a certain fileSize which is given as "maxSizeInMB".
-Set ignoreAlpha to true if you want to ignore the alpha channel for png images and compress them nonetheless (not recommended - the alpha channel will be lost and the resulting image might differ from the original image).
+Method to compress an image. This reduces the quality of an image down until it fits a certain fileSize which is given as `maxSizeInMB`.
+Set `ignoreAlpha` to true if you want to ignore the alpha channel for png images and compress them nonetheless (not recommended - the alpha channel will be lost and the resulting image might differ from the original image).
 Returns an observable that for every file given, onNext receives either a File when everything went as planned or an error Object if something went wrong. 
 
 #### `compressImage` 
