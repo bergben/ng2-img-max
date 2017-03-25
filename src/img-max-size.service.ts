@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+
+import { ImgExifService } from './img-exif.service';
+
 
 const MAX_STEPS = 15;
 declare var self: any;
@@ -8,48 +11,54 @@ declare var self: any;
 export class ImgMaxSizeService {
     timeAtStart: number;
     initialFile: File;
-    constructor() { }
+    constructor(@Inject(forwardRef(() => ImgExifService)) private imageExifService:ImgExifService) { }
     public compressImage(file: File, maxSizeInMB: number, ignoreAlpha: boolean = false, logExecutionTime: boolean = false): Observable<any> {
         let compressedFileSubject: Subject<any> = new Subject<any>();
         this.timeAtStart = new Date().getTime();
         this.initialFile = file;
         if (file.type !== "image/jpeg" && file.type !== "image/png") {
-            compressedFileSubject.next({ compressedFile: file, reason: "File provided is neither of type jpg nor of type png.", error: "INVALID_EXTENSION" });
-            return;
+            //END OF COMPRESSION
+            setTimeout(() => {
+                compressedFileSubject.error({ compressedFile: file, reason: "File provided is neither of type jpg nor of type png.", error: "INVALID_EXTENSION" });
+            }, 0);
+            return compressedFileSubject.asObservable();
         }
+
         let oldFileSize = file.size / 1024 / 1024;
         if (oldFileSize < maxSizeInMB) {
-            //FILE SIZE ALREADY BELOW MAX_SIZE -> no compression needed
+            // END OF COMPRESSION
+            // FILE SIZE ALREADY BELOW MAX_SIZE -> no compression needed
             setTimeout(() => { compressedFileSubject.next(file) }, 0);
+            return compressedFileSubject.asObservable();
         }
-        else {
-            let cvs = document.createElement('canvas');
-            let ctx = cvs.getContext('2d');
-            let img = new Image();
-            let self = this;
-            img.onload = () => {
-                cvs.width = img.naturalWidth;
-                cvs.height = img.naturalHeight;
-                ctx.drawImage(img, 0, 0);
-                let imageData = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+
+        let cvs = document.createElement('canvas');
+        let ctx = cvs.getContext('2d');
+        let img = new Image();
+        let self = this;
+        img.onload = () => {
+            this.imageExifService.getOrientedImage(img).then(orientedImg=>{
+                window.URL.revokeObjectURL(img.src);
+                cvs.width = orientedImg.width;
+                cvs.height = orientedImg.height;
+                ctx.drawImage(orientedImg, 0, 0);
+                let imageData = ctx.getImageData(0, 0, orientedImg.width, orientedImg.height);
                 if (file.type === "image/png" && this.isImgUsingAlpha(imageData) && !ignoreAlpha) {
                     //png image with alpha
-                    compressedFileSubject.next({ compressedFile: file, reason: "File provided is a png image which uses the alpha channel. No compression possible.", error: "PNG_WITH_ALPHA" });
+                    compressedFileSubject.error({ compressedFile: file, reason: "File provided is a png image which uses the alpha channel. No compression possible.", error: "PNG_WITH_ALPHA" });
                 }
                 ctx = cvs.getContext('2d', { 'alpha': false });
-                ctx.drawImage(img, 0, 0);
+                ctx.drawImage(orientedImg, 0, 0);
                 self.getCompressedFile(cvs, 50, maxSizeInMB, 1).then((compressedFile) => {
                     compressedFileSubject.next(compressedFile);
-                    window.URL.revokeObjectURL(img.src);
                     self.logExecutionTime(logExecutionTime);
                 }).catch((error) => {
-                    compressedFileSubject.next(error);
-                    window.URL.revokeObjectURL(img.src);
+                    compressedFileSubject.error(error);
                     self.logExecutionTime(logExecutionTime);
                 });
-            }
-            img.src = window.URL.createObjectURL(file);
+            });
         }
+        img.src = window.URL.createObjectURL(file);
         return compressedFileSubject.asObservable();
     };
     private getCompressedFile(cvs: HTMLCanvasElement, quality: number, maxSizeInMB: number, currentStep: number): Promise<File> {
