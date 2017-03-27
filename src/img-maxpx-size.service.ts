@@ -48,15 +48,12 @@ export class ImgMaxPXSizeService {
                 }
                 else{
                     self.ng2PicaService.resize([file], newWidth, newHeight).subscribe((result) => {
-                        //check if result is file
-                        if (typeof result.name !== 'undefined' && typeof result.size !== 'undefined' && typeof result.type !== 'undefined') {
-                            //all good, result is a file
-                            resizedFileSubject.next(result);
-                        }
-                        else {
-                            //something went wrong 
-                            resizedFileSubject.error({ resizedFile: file, reason: result, error: "PICA_ERROR" });
-                        }
+                        //all good, result is a file
+                        resizedFileSubject.next(result);
+                        self.logExecutionTime(logExecutionTime);
+                    }, error =>{
+                        //something went wrong 
+                        resizedFileSubject.error({ resizedFile: file, reason: error, error: "PICA_ERROR" });
                         self.logExecutionTime(logExecutionTime);
                     });
                 }
