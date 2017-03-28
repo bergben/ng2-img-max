@@ -5,6 +5,8 @@ Angular 2 module to resize images down to a certain width and height or to reduc
 
 This means, the huge image that the user may select will never even need to be uploaded to the server.
 
+### Make sure to check out [ng2-img-tools](https://github.com/bergben/ng2-img-tools) for further image manipulation such as resizing to an exact size (e.g. to create thumbnails) or image cropping.
+
 ## Install
 ```bash
 $ npm install ng2-img-max --save
