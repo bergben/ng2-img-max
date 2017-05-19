@@ -6,7 +6,7 @@ Angular 2 / 4 module to resize images down to a certain width and height or to r
 This means, the huge image that the user may select will never even need to be uploaded to the server.
 
 ## Demo
-A simple demo is available as a plnkr: http://plnkr.co/edit/HRi5rQEDCBZb59a0lcPe 
+A simple demo is available as a plnkr: http://plnkr.co/edit/HRi5rQEDCBZb59a0lcPe?p=preview
 
 ## Browser support
 This module is supported by all major browsers recent versions (IE 10+). 
