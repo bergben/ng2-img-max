@@ -1,11 +1,25 @@
 [![Join the chat at https://gitter.im/bergben/bergben](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bergben/bergben?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # ng2-img-max
-Angular 2 module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
+Angular 2 / 4 module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
 
 This means, the huge image that the user may select will never even need to be uploaded to the server.
 
-### Make sure to check out [ng2-img-tools](https://github.com/bergben/ng2-img-tools) for further image manipulation such as resizing to an exact size (e.g. to create thumbnails) or image cropping.
+## Demo
+A simple demo is available as a plnkr: http://plnkr.co/edit/HRi5rQEDCBZb59a0lcPe 
+
+## Browser support
+This module is supported by all major browsers recent versions (IE 10+). 
+
+Make sure to include the following polyfill for `HtmlCanvasElement.toBlob()`: https://www.npmjs.com/package/blueimp-canvas-to-blob
+
+```bash
+$ npm install blueimp-canvas-to-blob --save
+```
+
+
+
+### Make sure to check out [ng2-img-tools](https://github.com/bergben/ng2-img-tools) for further image manipulation such as resizing to an exact size (e.g. to create thumbnails) or image cropping as seen in the demo.
 
 ## Install
 ```bash
@@ -92,6 +106,3 @@ The current algorithm can be found here: https://github.com/bergben/ng2-img-max/
 
 ## Limitations
 Although the resizing functions do use web workers to do the heavy work, this is not possible for the compression methods. The reasons for this are that a web worker does not have access to the DOM and can therefor not create a new HtmlCanvasElement. Neither can it be passed as a parameter to the web worker, as a web worker can only receive serializable data, which only be the ImageData but that can only be turned into a 2DCanvasContext, not a HtmlCanvasElement itself without the DOM. 
-
-## To-do
- - Provide a demo
