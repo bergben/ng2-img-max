@@ -84,7 +84,19 @@ export class ImgMaxSizeService {
         return result;
     }
     private getResultFile(blob: Blob): File {
-        return new File([blob], this.initialFile.name, { type: this.initialFile.type, lastModified: new Date().getTime() });
+        return this.generateResultFile(blob, this.initialFile.name, this.initialFile.type, new Date().getTime());
+    }
+    private generateResultFile(blob:Blob, name:string, type: string, lastModified: number):File{
+        let resultFile=new Blob([blob], {type: type});
+        return this.blobToFile(resultFile, name, lastModified);
+    }
+    private blobToFile(blob: Blob, name:string, lastModified: number): File {
+        let file: any = blob;
+        file.name = name;
+        file.lastModified = lastModified;
+
+        //Cast to a File() type
+        return <File> file;
     }
     private getCalculatedQuality(blob: Blob, quality: number, maxSizeInMB: number, currentStep: number): number {
         //CALCULATE NEW QUALITY
