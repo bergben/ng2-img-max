@@ -1,7 +1,7 @@
 [![Join the chat at https://gitter.im/bergben/bergben](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bergben/bergben?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # ng2-img-max
-Angular 2 / 4 module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
+Angular 2 and beyond module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
 
 This means, the huge image that the user may select will never even need to be uploaded to the server.
 
