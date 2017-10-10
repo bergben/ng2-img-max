@@ -71,7 +71,7 @@ Possible errors are: <br />
 Example code catch errors:
 
  ```TypeScript
-this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe(result => {
+this.ng2ImgMaxService.resize([someImage], 2000, 1000).subscribe(result => {
     //all good, result is a file
     console.info(result);
 }, error => {
