@@ -1,5 +1,7 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 
 import { ImgExifService } from './img-exif.service';
 
@@ -11,7 +13,7 @@ declare var self: any;
 export class ImgMaxSizeService {
     timeAtStart: number;
     initialFile: File;
-    constructor(@Inject(forwardRef(() => ImgExifService)) private imageExifService:ImgExifService) { }
+    constructor( @Inject(forwardRef(() => ImgExifService)) private imageExifService: ImgExifService) { }
     public compressImage(file: File, maxSizeInMB: number, ignoreAlpha: boolean = false, logExecutionTime: boolean = false): Observable<any> {
         let compressedFileSubject: Subject<any> = new Subject<any>();
         this.timeAtStart = new Date().getTime();
@@ -37,7 +39,7 @@ export class ImgMaxSizeService {
         let img = new Image();
         let self = this;
         img.onload = () => {
-            this.imageExifService.getOrientedImage(img).then(orientedImg=>{
+            this.imageExifService.getOrientedImage(img).then(orientedImg => {
                 window.URL.revokeObjectURL(img.src);
                 cvs.width = orientedImg.width;
                 cvs.height = orientedImg.height;
@@ -86,17 +88,17 @@ export class ImgMaxSizeService {
     private getResultFile(blob: Blob): File {
         return this.generateResultFile(blob, this.initialFile.name, this.initialFile.type, new Date().getTime());
     }
-    private generateResultFile(blob:Blob, name:string, type: string, lastModified: number):File{
-        let resultFile=new Blob([blob], {type: type});
+    private generateResultFile(blob: Blob, name: string, type: string, lastModified: number): File {
+        let resultFile = new Blob([blob], { type: type });
         return this.blobToFile(resultFile, name, lastModified);
     }
-    private blobToFile(blob: Blob, name:string, lastModified: number): File {
+    private blobToFile(blob: Blob, name: string, lastModified: number): File {
         let file: any = blob;
         file.name = name;
         file.lastModified = lastModified;
 
         //Cast to a File() type
-        return <File> file;
+        return <File>file;
     }
     private getCalculatedQuality(blob: Blob, quality: number, maxSizeInMB: number, currentStep: number): number {
         //CALCULATE NEW QUALITY
