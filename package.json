@@ -1,6 +1,6 @@
 {
     "name": "ng2-img-max",
-    "version": "2.1.7",
+    "version": "2.1.9",
     "description": "Angular module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.",
     "repository": {
         "type": "git",
@@ -51,7 +51,7 @@
         "rollup": "^0.41.4",
         "rxjs": "5.1.1",
         "tslint": "^4.4.2",
-        "typescript": "^2.1.6",
+        "typescript": "~2.4.2",
         "uglify-js": "^2.7.5",
         "zone.js": "^0.7.7"
     },
