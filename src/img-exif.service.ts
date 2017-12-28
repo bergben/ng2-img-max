@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as Exif from 'exif-js';
+import 'exif-js';
+declare var EXIF: any;
 
 @Injectable()
 export class ImgExifService {
@@ -7,8 +8,8 @@ export class ImgExifService {
         let result: Promise<HTMLImageElement> = new Promise((resolve, reject) => {
             let img:any;
 
-            Exif.getData(image, () => {
-                let orientation = Exif.getTag(image, "Orientation");
+            EXIF.getData(image, () => {
+                let orientation = EXIF.getTag(image, "Orientation");
 
                 if (orientation != 1) {
                     let canvas:HTMLCanvasElement = document.createElement("canvas"),
