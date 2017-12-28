@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Exif } from './exif';
+import * as Exif from 'exif-js';
 
 @Injectable()
 export class ImgExifService {
