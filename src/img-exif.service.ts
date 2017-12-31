@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import 'exif-js';
+import 'exif-js/exif';
 declare var EXIF: any;
 
 @Injectable()
@@ -8,6 +8,14 @@ export class ImgExifService {
         let result: Promise<HTMLImageElement> = new Promise((resolve, reject) => {
             let img:any;
 
+            if(!EXIF){
+                EXIF = {};
+                EXIF.getData = function(img, callback){
+                    callback.call(image);
+                    return true;
+                }
+                EXIF.getTag = () => false;
+            }
             EXIF.getData(image, () => {
                 let orientation = EXIF.getTag(image, "Orientation");
 

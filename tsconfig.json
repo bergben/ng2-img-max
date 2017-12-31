@@ -15,7 +15,8 @@
                 "node_modules/@angular/*"
             ],
             "rxjs/*": ["node_modules/rxjs/*"],
-            "ng2-pica": ["node_modules/ng2-pica"]
+            "ng2-pica": ["node_modules/ng2-pica"],
+            "exif-js": ["node_modules/exif-js"]
         },
         "lib": [
             "es2015",
