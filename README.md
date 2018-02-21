@@ -48,7 +48,7 @@ export class MyAppModule {}
 import { Ng2ImgMaxService } from 'ng2-img-max';
 [...]
     constructor(private ng2ImgMaxService: Ng2ImgMaxService) {
-        this.ng2ImgMaxSerive.resize([someImage], 2000, 1000).subscribe((result)=>{
+        this.ng2ImgMaxService.resize([someImage], 2000, 1000).subscribe((result)=>{
         });
     }
 }
