@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "exif-js": "^2.3.0",
-    "ng2-pica": "Flowwwww/ng2-pica"
+    "ng2-pica": "https://github.com/Flowwwww/ng2-pica/tarball/master"
   },
   "peerDependencies": {
     "@angular/core": "^6.0.4",
