@@ -34,18 +34,18 @@
     "ng2-pica": "^1.2.0"
   },
   "peerDependencies": {
-    "@angular/core": "6.0.4",
+    "@angular/core": "^6.0.4",
     "core-js": ">=2.4.1",
     "rxjs": "^6.2.0"
   },
   "devDependencies": {
-    "@angular/common": "6.0.4",
-    "@angular/compiler": "6.0.4",
-    "@angular/compiler-cli": "6.0.4",
-    "@angular/core": "6.0.4",
-    "@angular/platform-browser": "6.0.4",
-    "@angular/platform-browser-dynamic": "6.0.4",
-    "@angular/router": "6.0.4",
+    "@angular/common": "^6.0.4",
+    "@angular/compiler": "^6.0.4",
+    "@angular/compiler-cli": "^6.0.4",
+    "@angular/core": "^6.0.4",
+    "@angular/platform-browser": "^6.0.4",
+    "@angular/platform-browser-dynamic": "^6.0.4",
+    "@angular/router": "^6.0.4",
     "@types/node": ">=7.0.5",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.3",
