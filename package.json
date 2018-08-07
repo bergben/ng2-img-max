@@ -1,6 +1,6 @@
 {
     "name": "ng2-img-max",
-    "version": "2.1.16",
+    "version": "2.1.17",
     "description": "Angular module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.",
     "repository": {
         "type": "git",
@@ -31,7 +31,7 @@
     ],
     "dependencies": {
         "exif-js": "^2.3.0",
-        "ng2-pica": "https://github.com/Flowwwww/ng2-pica/tarball/master"
+        "ng2-pica": "^1.2.11"
     },
     "peerDependencies": {
         "@angular/core": "^6.0.4",
@@ -39,13 +39,13 @@
         "rxjs": "^6.2.0"
     },
     "devDependencies": {
-        "@angular/common": "^6.0.4",
-        "@angular/compiler": "^6.0.4",
-        "@angular/compiler-cli": "^6.0.4",
-        "@angular/core": "^6.0.4",
-        "@angular/platform-browser": "^6.0.4",
-        "@angular/platform-browser-dynamic": "^6.0.4",
-        "@angular/router": "^6.0.4",
+        "@angular/common": "^6.0.9",
+        "@angular/compiler": "^6.0.9",
+        "@angular/compiler-cli": "^6.0.9",
+        "@angular/core": "^6.0.9",
+        "@angular/platform-browser": "^6.0.9",
+        "@angular/platform-browser-dynamic": "^6.0.9",
+        "@angular/router": "^6.0.9",
         "@types/node": ">=7.0.5",
         "core-js": "^2.4.1",
         "reflect-metadata": "^0.1.3",

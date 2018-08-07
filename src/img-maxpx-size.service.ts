@@ -1,6 +1,6 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Ng2PicaService } from 'ng2-pica/ng2-pica';
+import { Ng2PicaService } from 'ng2-pica';
 
 import { ImgExifService } from './img-exif.service';
 
