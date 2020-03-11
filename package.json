@@ -30,7 +30,7 @@
         "resize"
     ],
     "dependencies": {
-        "exif-js": "^2.3.0",
+        "exifr": "^4.3.0",
         "ng2-pica": "^1.2.12"
     },
     "peerDependencies": {
