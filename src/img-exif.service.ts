@@ -1,23 +1,12 @@
 import { Injectable } from '@angular/core';
-var EXIF = require('exif-js');
+import * as exifr from 'exifr';
 
 @Injectable()
 export class ImgExifService {
     public getOrientedImage(image:HTMLImageElement):Promise<HTMLImageElement> {
-        let result: Promise<HTMLImageElement> = new Promise((resolve, reject) => {
+        return new Promise<HTMLImageElement>(resolve => {
             let img:any;
-
-            if(!EXIF){
-                EXIF = {};
-                EXIF.getData = function(img, callback){
-                    callback.call(image);
-                    return true;
-                }
-                EXIF.getTag = () => false;
-            }
-            EXIF.getData(image, () => {
-                let orientation = EXIF.getTag(image, "Orientation");
-
+			exifr.orientation(image).then(orientation => {
                 if (orientation != 1) {
                     let canvas:HTMLCanvasElement = document.createElement("canvas"),
                         ctx:CanvasRenderingContext2D = <CanvasRenderingContext2D> canvas.getContext("2d"),
@@ -72,6 +61,5 @@ export class ImgExifService {
                 }
             });
         });
-        return result;
     }
 }
