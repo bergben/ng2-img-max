@@ -30,7 +30,7 @@
         "resize"
     ],
     "dependencies": {
-        "exifr": "^4.3.0",
+        "exifr": "^4.3.4",
         "ng2-pica": "^1.3.1"
     },
     "peerDependencies": {
