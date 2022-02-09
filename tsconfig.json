@@ -1,32 +1,29 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "module": "es2015",
-        "target": "es5",
-        "experimentalDecorators": true,
-        "sourceMap": true,
-        "outDir": "dist",
-        "moduleResolution": "node",
-        "declaration": true,
-        "stripInternal": true,
-        "skipLibCheck": true,
-        "paths": {
-            "@angular/*": [
-                "node_modules/@angular/*"
-            ],
-            "rxjs/*": ["node_modules/rxjs/*"],
-            "ng2-pica": ["node_modules/ng2-pica"],
-            "exifr": ["node_modules/exifr"]
-        },
-        "lib": [
-            "es2015",
-            "dom"
-        ]
-    },
-    "files": [
-        "ng2-img-max.ts"
-    ],
-    "angularCompilerOptions": {
-        "strictMetadataEmit": true
-    }
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2020", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }
