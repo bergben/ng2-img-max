@@ -1,4 +1,4 @@
-import {forwardRef, Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 
 import {ImgExifService} from './img-exif.service';
@@ -7,12 +7,14 @@ import {ImgExifService} from './img-exif.service';
 const MAX_STEPS = 15;
 declare var self: any;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ImgMaxSizeService {
   timeAtStart: number = 0;
   initialFile: File | undefined;
 
-  constructor(@Inject(forwardRef(() => ImgExifService)) private imageExifService: ImgExifService) {
+  constructor(private imageExifService: ImgExifService) {
   }
 
   public compressImage(file: File, maxSizeInMB: number, ignoreAlpha: boolean = false, logExecutionTime: boolean = false): Observable<any> {

@@ -1,9 +1,8 @@
-import {forwardRef, Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-
 import {ImgExifService} from './img-exif.service';
-
-const pica = require('pica')();
+// @ts-ignore
+import * as pica from 'pica';
 
 const globalWindow: any = window;
 
@@ -28,9 +27,11 @@ export interface ResizeBufferOptions {
   unsharpThreshold?: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class Ng2PicaService {
-  constructor(@Inject(forwardRef(() => ImgExifService)) private imageExifService: ImgExifService) {
+  constructor(private imageExifService: ImgExifService) {
   }
 
   public resize(files: File[], width: number, height: number, keepAspectRatio: boolean = false): Observable<any> {

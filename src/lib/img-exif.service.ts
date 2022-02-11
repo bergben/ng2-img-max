@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import * as exifr from 'exifr';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ImgExifService {
   public getOrientedImage(image: HTMLImageElement): Promise<HTMLImageElement> {
     return new Promise<HTMLImageElement>(resolve => {
