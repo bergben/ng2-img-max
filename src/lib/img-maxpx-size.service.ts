@@ -1,14 +1,17 @@
-import {forwardRef, Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 
 import {ImgExifService} from './img-exif.service';
 import {Ng2PicaService} from './ng2-pica.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ImgMaxPXSizeService {
   timeAtStart: number = 0;
 
-  constructor(@Inject(forwardRef(() => Ng2PicaService)) private ng2PicaService: Ng2PicaService, @Inject(forwardRef(() => ImgExifService)) private imageExifService: ImgExifService) {
+  constructor(private ng2PicaService: Ng2PicaService,
+              private imageExifService: ImgExifService) {
   }
 
   public resizeImage(file: File, maxWidth: number, maxHeight: number, logExecutionTime: boolean = false): Observable<any> {
