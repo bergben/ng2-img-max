@@ -1,15 +1,12 @@
 [![Join the chat at https://gitter.im/bergben/bergben](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bergben/bergben?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# Not actively maintained anymore, looking for maintainer
-Unfortunately I don't have time to actively maintain my open source repos anymore. If anyone wants to take over, feel free to contact me anytime, I'd be happy if this project still finds use. 
-
 # ng2-img-max
 Angular 2 and beyond module to resize images down to a certain width and height or to reduce the quality to fit a certain maximal filesize - all in the browser.
 
 This means, the huge image that the user may select will never even need to be uploaded to the server.
 
 ## Demo
-A simple demo is available as a plnkr: http://plnkr.co/edit/HRi5rQEDCBZb59a0lcPe?p=preview
+A simple demo is available on stackblitz: https://stackblitz.com/edit/angular-ivy-hnhy6v
 
 ## Browser support
 This module is supported by all major browsers recent versions (IE 10+). 
@@ -17,7 +14,7 @@ This module is supported by all major browsers recent versions (IE 10+).
 Make sure to include the following polyfill for `HtmlCanvasElement.toBlob()`: https://www.npmjs.com/package/blueimp-canvas-to-blob
 
 ```bash
-$ npm install blueimp-canvas-to-blob --save
+$ npm install blueimp-canvas-to-blob
 ```
 
 
@@ -26,10 +23,11 @@ $ npm install blueimp-canvas-to-blob --save
 
 ## Install
 ```bash
-$ npm install ng2-img-max --save
+$ npm install ng2-img-max
 ```
 
 ### Import the module
+Only needed for Angular versions prior to 13
 ```TypeScript
 // app.module.ts
 import { NgModule } from '@angular/core';
