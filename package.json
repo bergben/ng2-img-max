@@ -39,6 +39,7 @@
     "@angular/cli": "~13.1.2",
     "@angular/compiler-cli": "~13.1.2",
     "@types/node": "^12.11.1",
+    "@types/pica": "^9.0.1",
     "ng-packagr": "^13.1.1",
     "typescript": "~4.5.2"
   },

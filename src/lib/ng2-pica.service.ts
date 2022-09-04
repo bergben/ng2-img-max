@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {ImgExifService} from './img-exif.service';
-// @ts-ignore
-import * as pica from 'pica';
+import * as picaLib from 'pica';
 
+const pica = picaLib();
 const globalWindow: any = window;
 
 export interface ResizeCanvasOptions {
