@@ -48,7 +48,7 @@ export class Ng2PicaService {
 
   public resizeCanvas(from: HTMLCanvasElement, to: HTMLCanvasElement, options: ResizeCanvasOptions): Promise<HTMLCanvasElement> {
     let result: Promise<HTMLCanvasElement> = new Promise((resolve, reject) => {
-      let curPica = new pica();
+      let curPica = pica;
       if (!curPica || !curPica.resize) {
         curPica = new globalWindow.pica();
       }
@@ -65,7 +65,7 @@ export class Ng2PicaService {
 
   public resizeBuffer(options: ResizeBufferOptions): Promise<Uint8Array> {
     let result: Promise<Uint8Array> = new Promise((resolve, reject) => {
-      let curPica = new pica();
+      let curPica = pica;
       if (!curPica || !curPica.resizeBuffer) {
         curPica = new globalWindow.pica();
       }
