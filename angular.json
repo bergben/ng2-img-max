@@ -26,5 +26,8 @@
       }
     }
   },
-  "defaultProject": "ng2-img-max"
+  "defaultProject": "ng2-img-max",
+  "cli": {
+    "analytics": false
+  }
 }
